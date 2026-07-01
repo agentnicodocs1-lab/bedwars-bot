@@ -1,9 +1,9 @@
-const { Client, GatewayIntentBits } = require('discord.js');
+const { Client, GatewayIntentBits, PermissionFlagsBits } = require('discord.js');
 const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent] });
 
 // CONFIGURATION
 const BOT_TOKEN = process.env.DISCORD_TOKEN;
-const REQUIRED_ROLE_ID = "YOUR_ADMIN_ROLE_ID_HERE";
+const REQUIRED_ROLE_ID = "1521724813864075316";
 
 const SCRIPT_TEMPLATE = `--[=[ Protected BedWars Custom Script v5.2 ]=]
 local _W = {
@@ -81,10 +81,10 @@ client.on('ready', () => {
 client.on('messageCreate', async (message) => {
     if (message.author.bot) return;
 
-    if (message.content.startsWith('/whitelist user ')) {
-        if (REQUIRED_ROLE_ID !== "YOUR_ADMIN_ROLE_ID_HERE" && !message.member.roles.cache.has(REQUIRED_ROLE_ID)) {
-            return message.reply("❌ Error: You do not have permission to run this command.");
-        }
+    if (REQUIRED_ROLE_ID !== "1521724813864075316" && !message.member.roles.cache.has(REQUIRED_ROLE_ID)) {
+    return message.reply("❌ Error: You do not have permission to run this command.");
+}
+
 
         const username = message.content.replace('/whitelist user ', '').trim();
         if (!username || username.length === 0) {
