@@ -1,5 +1,14 @@
 const { Client, GatewayIntentBits } = require('discord.js');
+const http = require('http');
+
+// Bypasses Render's Web Service shutdown rule by creating a dummy page
+http.createServer((req, res) => {
+    res.write("Bot is running perfectly!");
+    res.end();
+}).listen(process.env.PORT || 3000);
+
 const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent] });
+
 
 // CONFIGURATION
 const BOT_TOKEN = process.env.DISCORD_TOKEN;
