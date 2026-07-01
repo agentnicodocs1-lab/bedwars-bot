@@ -3,9 +3,11 @@ const http = require('http');
 
 // Bypasses Render's Web Service shutdown rule by creating a dummy page
 http.createServer((req, res) => {
-    res.write("Bot is running perfectly!");
-    res.end();
-}).listen(process.env.PORT || 3000);
+   res.write("Bot is running perfectly!");
+   res.end();
+}).listen(process.env.PORT || 10000, () => {
+   console.log("Web server is listening...");
+});
 
 const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent] });
 
